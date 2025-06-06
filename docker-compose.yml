@@ -1,0 +1,42 @@
+version: '3.8' # Pode ser removido se estiver usando docker compose v2
+
+services:
+  mariadb:
+    image: mariadb:latest # Considere fixar uma versão ex: mariadb:10.11
+    container_name: mariadb_migration # Nome do container MariaDB
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: abd_migration
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+    ports:
+      - "3307:3306" # Host:Container - MariaDB acessível em localhost:3307 do host
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-u", "admin", "-padmin"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  informix:
+    image: ibmcom/informix-developer-database:latest # Considere fixar uma versão ex: 14.10.FC10DE
+    container_name: migration_informix # Nome do container Informix
+    privileged: true # Geralmente necessário para Informix no Docker
+    environment:
+      LICENSE: accept
+      # SIZE: small # Opcional, a imagem developer-database geralmente se auto-configura
+      # INIT_DB: true # Opcional, a imagem developer-database já inicializa um servidor
+                     # Nome do servidor padrão é geralmente 'ids_1' ou similar (verificar logs)
+    ports:
+      - "9088:9088"    # SQL port (onsoctcp)
+      - "9089:9089"    # DRDA port
+      # As portas abaixo são para protocolos NoSQL e  não  necessárias
+      # - "27019:27017"  # MongoDB protocol port
+      # - "27020:27018"  # MongoDB protocol port
+    volumes:
+      - informix_data:/opt/ibm/data
+
+volumes:
+  mariadb_data:
+  informix_data:
