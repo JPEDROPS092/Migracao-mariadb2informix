@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.8' # Pode ser removido se estiver usando docker compose v2
 
 services:
   informix:
