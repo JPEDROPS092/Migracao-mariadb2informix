@@ -37,8 +37,34 @@ paginate: true
 
 ## **2.2 Procedure - relacionamento entre tabelas**
 
+### **2.2.1 Procedure MariaDB**
+
+<img src="./mariaDB.png" width="600px">
 
 ---
+
+### **2.2.2 Procedure Informix**
+
+<img src="./informix.png" width="600px">
+
+---
+
+
+## **2.3 Procedure - Resultados**
+
+### **2.3.1 Procedure MariaDB**
+
+<img src="./resultadoMaria.png" width="600px">
+
+---
+
+### **2.3.2 Procedure Informix**
+
+<img src="./resultadoInformix.png" width="600px">
+
+---
+
+
 
 
 # 3. Transações
