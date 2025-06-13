@@ -1,5 +1,3 @@
-version: '3.8' # Pode ser removido se estiver usando docker compose v2
-
 services:
   mariadb:
     image: mariadb:latest # Considere fixar uma versão ex: mariadb:10.11
