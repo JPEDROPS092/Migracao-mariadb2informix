@@ -119,7 +119,7 @@ Use sua ferramenta gráfica preferida (DBeaver, HeidiSQL, MySQL Workbench, etc.)
 1. Entre no contêiner:
 
    ```bash
-   docker exec -it migration_informix bash
+   docker exec -it informix_database bash
    ```
 2. Uma vez dentro do contêiner, use o utilitário `dbaccess`:
 
