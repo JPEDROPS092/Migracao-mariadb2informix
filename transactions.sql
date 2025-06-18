@@ -1,10 +1,10 @@
 BEGIN WORK;
 
 INSERT INTO venda (vencodigo, vendata, venfilcodigo, venclicodigo, venfuncodigo, venfpcodigo)
-VALUES (500, TODAY, 1, 10, 25, 1);
+VALUES (3, TODAY, 1, 10, 25, 1);
 
 INSERT INTO itemvenda (itvvencodigo, itvprocodigo, itvqtde)
-VALUES (500, 123, 2);
+VALUES (203, 123, 2);
 
 UPDATE produto
 SET prosaldo = prosaldo - 2
