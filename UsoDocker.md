@@ -90,7 +90,9 @@ Este projeto utiliza Docker Compose para configurar rapidamente um ambiente com 
 
 ### Executando Scripts SQL
 
-1.  Copie os scripts para dentro do contêiner:
+1. Saia do contêiner com o comando `exit`
+
+2.  Copie os scripts para dentro do contêiner:
 
     ```bash
     docker cp ./scripts/ifxtables.sql informix_db_docs:/home/informix/ifxtables.sql
@@ -98,6 +100,7 @@ Este projeto utiliza Docker Compose para configurar rapidamente um ambiente com 
     docker cp ./scripts/ifxconstraints.sql informix_db_docs:/home/informix/ifxconstraints.sql
     ... #restante dos scripts
     ```
+3. Entre no contêiner `docker exec -it informix_db_docs bash`
 
 2.  Execute os scripts com `dbaccess` na seguinte ordem:
 
@@ -350,9 +353,21 @@ COMMIT WORK;
     dbaccess <NOME_DO_BANCO> /home/informix/triggers.sql
     ```
 
-2. Testar triggers:
+2. Testar trigger saldo_produto:
+   
+- Verificar saldo de algum produto: 
   ```
-  SELECT FROM 
+  SELECT procodigo, pronome, prosaldo FROM produto WHERE procodigo = 2;
+  ```
+
+- Realizar uma venda: 
+  ```
+  INSERT INTO itemvenda (itvvencodigo, itvprocodigo, itvqtde) VALUES (200, 2, 4);
+  ```
+
+- Verificar se o saldo atualizou: 
+  ```
+  SELECT procodigo, pronome, prosaldo FROM produto WHERE procodigo = 2;
   ```
 
 ### Transactions 

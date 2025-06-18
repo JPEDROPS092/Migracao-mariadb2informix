@@ -17,13 +17,12 @@ WHEN (new.clibaicodigo != old.clibaicodigo)
 
 
 
-
 CREATE TRIGGER tg_atualiza_saldo_produto
-AFTER INSERT ON itemvenda
-REFERENCING NEW AS new_row
+INSERT ON itemvenda
+REFERENCING NEW AS n
 FOR EACH ROW
 (
     UPDATE produto
-    SET prosaldo = prosaldo - new_row.itvqtde
-    WHERE procodigo = new_row.itvprocodigo;
+    SET prosaldo = prosaldo - n.itvqtde
+    WHERE procodigo = n.itvprocodigo
 );
