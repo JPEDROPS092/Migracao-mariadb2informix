@@ -1,9 +1,7 @@
-version: '3.8' # Pode ser removido se estiver usando docker compose v2
-
 services:
   informix:
     image: icr.io/informix/informix-developer-database:latest
-    container_name: informix_db
+    container_name: informix_db_docs
     privileged: true
     ports:
       - "9088:9088" # Porta SQL
